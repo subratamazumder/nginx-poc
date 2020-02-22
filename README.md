@@ -93,8 +93,8 @@ server {
     listen 443 ssl;
     ssl_certificate /etc/ssl/nginx.crt;
     ssl_certificate_key /etc/ssl/nginx.key;
-	ssl_client_certificate /etc/ssl/nginx-client.crt;
-	ssl_verify_client on;
+    ssl_client_certificate /etc/ssl/nginx-client.crt;
+    ssl_verify_client on;
     server_name localhost;
     server_tokens off;
 
