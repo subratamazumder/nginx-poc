@@ -77,7 +77,7 @@ openssl s_client -connect localhost:8124 -servername subratapoc 2>/dev/null
 # Mutual TLS
 ## 1. Create client certs
 ```bash
-cd tls
+cd mtls
 ```
 create > 
 ```bash
