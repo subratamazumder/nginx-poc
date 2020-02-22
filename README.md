@@ -1,6 +1,7 @@
 # TLS only
 ## 1. Create server certs
 cd tls
+
 create > sudo openssl req -x509 -nodes -days 365 -subj '/C=IN/ST=Bangalore/L=ECity/O=Subrata POC/OU=POC/CN=subratapoc' -newkey rsa:2048 -keyout nginx.key -out nginx.crt
 
 verify > openssl x509 -in nginx.crt -text -noout
@@ -56,6 +57,7 @@ openssl s_client -connect localhost:8124 -servername subratapoc 2>/dev/null
 # Mutual TLS
 ## 1. Create client certs
 cd tls
+
 create > sudo openssl req -x509 -nodes -days 365 -subj '/C=IN/ST=Bangalore/L=ECity/O=Subrata POC Clinet/OU=POC/CN=subratapocclient' -newkey rsa:2048 -keyout nginx-client.key -out nginx-client.crt
 
 verify > openssl x509 -in nginx-client.crt -text -noout
