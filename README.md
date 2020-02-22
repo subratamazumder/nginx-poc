@@ -15,7 +15,8 @@ openssl x509 -in nginx.crt -text -noout
 ```
 
 ## 2. Setup Nginx Conf
-```server {
+```
+server {
     listen 443 ssl;
     ssl_certificate /etc/ssl/nginx.crt;
     ssl_certificate_key /etc/ssl/nginx.key;
@@ -157,7 +158,13 @@ expected output>>
 ```
 Verify certificate is matched as you created in step 1
 ```bash 
-openssl s_client -connect localhost:8124 -servername subratapoc 2>/dev/null
+openssl s_client -connect localhost:8134 -servername subratapoc 2>/dev/null
+```
+You should below along with other details
+```
+Acceptable client certificate CA names
+/C=IN/ST=Bangalore/L=ECity/O=Subrata POC Clinet/OU=POC/CN=subratapocclient
+Server Temp Key: ECDH, X25519, 253 bits
 ```
 
 ## 5.Notes
