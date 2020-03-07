@@ -1,5 +1,7 @@
-# TLS only
-## 1. Create server certs
+# Setting up TLS & Mutual TLS with Nginx
+
+## TLS only
+### 1. Create server certs
 ```bash
 cd tls
 ```
@@ -14,7 +16,7 @@ verify >
 openssl x509 -in nginx.crt -text -noout
 ```
 
-## 2. Setup Nginx Conf
+### 2. Setup Nginx Conf
 ```
 server {
     listen 443 ssl;
@@ -35,7 +37,7 @@ server {
     }
 }
 ```
-## 3. Setup docker
+### 3. Setup docker
 ```
 FROM nginx:latest
 COPY default.conf /etc/nginx/conf.d/
@@ -50,7 +52,7 @@ docker run -p 8123:80 -p 8124:443 --name nginx-ssl -tid nginx-ssl
 docker ps
 docker exec -it<container-id> bash
 ```
-## 4. Test
+### 4. Test
 SSL Works 
 ```bash
 curl -k https://localhost:8124/sample.html
@@ -74,8 +76,8 @@ Verify certificate is matched as you created in step 1
 openssl s_client -connect localhost:8124 -servername subratapoc 2>/dev/null
 ```
 
-# Mutual TLS
-## 1. Create client certs
+## Mutual TLS
+### 1. Create client certs
 ```bash
 cd mtls
 ```
@@ -87,7 +89,7 @@ verify >
 ```bash
 openssl x509 -in nginx-client.crt -text -noout
 ```
-## 2. Setup Nginx Conf
+### 2. Setup Nginx Conf
 ```
 server {
     listen 443 ssl;
@@ -110,7 +112,7 @@ server {
     }
 }
 ```
-## 3. Setup docker
+### 3. Setup docker
 ```FROM nginx:latest
 COPY default.conf /etc/nginx/conf.d/
 COPY nginx.crt /etc/ssl/
@@ -124,7 +126,7 @@ docker run -p 8133:80 -p 8134:443 --name nginx-mtls -tid nginx-mtls
 docker ps
 docker exec -it<container-id> bash
 ```
-## 4. Test
+### 4. Test
 Only TLS does not work anymore 
 ```bash
 curl -k https://localhost:8134/sample.html
@@ -167,7 +169,7 @@ Acceptable client certificate CA names
 Server Temp Key: ECDH, X25519, 253 bits
 ```
 
-## 5.Notes
+### 5.Notes
 
 https://scmquest.com/nginx-docker-container-with-https-protocol/
 
